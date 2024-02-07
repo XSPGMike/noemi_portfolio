@@ -157,12 +157,22 @@
 
   function handleLargeScreen() {
     $('.folder').draggable()
+    $(".window").each((_, d) => {
+      $(d).css('height', '500px')
+      $(d).css('width', '500px')
+    })
   }
 
   function handleSmallScreen() {
     $(".folder").each((_, d) => {
       $(d).css('top', '')
       $(d).css('left', '')
+    })
+    $(".window").each((_, d) => {
+      $(d).css('top', '0px')
+      $(d).css('left', '0px')
+      $(d).css('height', '100%')
+      $(d).css('width', '100%')
     })
   }
 
