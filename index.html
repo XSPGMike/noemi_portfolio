@@ -10,17 +10,9 @@
   </head>
   <body>
   <main>
-    <div class="folder">about</div>
-    <div class="folder">different</div>
-    <div class="folder">something</div>
-    <div class="window">
-      <div class="window-topbar">
-        <button>x</button>
-        <button>-</button>
-        <button>+</button>
-      </div>
-      <iframe src="https://www.example.com"></iframe>
-    </div>
+    <div class="folder" data-url="./about.html">about</div>
+    <div class="folder" data-url="./about.html">different</div>
+    <div class="folder" data-url="./about.html">something</div>
   </main>
   </body>
 </html>
@@ -59,6 +51,8 @@
   .window {
     position: absolute;
     z-index: 999;
+    border: 1px solid black;
+    background-color: white;
   }
 
   .window-topbar {
@@ -87,21 +81,99 @@
     z-index: 999;
   }
 
+  @media (max-width:480px)  { 
+    .window {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+    }
+  }
+
+
+
 </style>
 <script>
-  function handleOpenFolder() {
-    alert('clicked on folder;')
+  function createWindow(url, x = 100, y = 100) {
+    const win = $(`
+    <div class="window">
+      <div class="window-topbar">
+        <button>x</button>
+        <button>+</button>
+      </div>
+      <iframe src="${url}"></iframe>
+    </div>
+    `)
+    if($(window).width() > 700) {
+      let top = y - 100 > 0 ? y - 100 : 0
+      let left = x - 100 > 0 ? x - 100 : 0
+      win.css('top', top)
+      win.css('left', left)
+    }
+    $('main').append(win)
+    $('.window').draggable()
+    $('.window').each((_, w) => {
+      $($($(w).children()[0]).children()[0]).click(() => {
+        $(w).hide()
+      })
+      if($(window).height() > 700) {
+        $($($(w).children()[0]).children()[1]).click(() => {
+          if($($(w).children()[1]).css('height') === '500px') {
+          $($($(w).children()[0]).children()[1]).text('-')
+            $(w).css('left', 0)
+            $(w).css('top', 0)
+            $(w).css('width', '100%')
+            $(w).css('height', '100%')
+            $($(w).children()[1]).css('height', '100%');
+            $($(w).children()[1]).css('width', '100%');
+          } else {
+          $($($(w).children()[0]).children()[1]).text('+')
+            $(w).css('left', x - 100)
+            $(w).css('top', y - 100)
+            $(w).css('width', '500px')
+            $(w).css('height', '500px')
+            $($(w).children()[1]).css('height', '500px');
+            $($(w).children()[1]).css('width', '500px');
+          }
+        })
+      }
+    })
   }
+
+  function handleOpenFolder(e) {
+    const { x, y } = e.target.getBoundingClientRect()
+    const { url } = $(e.target).data()
+    if($(window).width() < 700) {
+      createWindow(url, 0, 0)
+    } else {
+      createWindow(url, x, y)
+    }
+  }
+
   $(".folder").each((_, d) => {
     $(d).css('top', Math.floor(Math.random()*(window.innerHeight-400)))
     $(d).css('left', Math.floor(Math.random()*(window.innerWidth-400)))
   })
-  $('.folder').draggable()
-  $('.folder').click(handleOpenFolder)
-  $('.window').draggable()
-  $('.window').each((_, w) => {
-    $($($(w).children()[0]).children()[0]).click(() => {
-      $(w).hide()
+
+  function handleLargeScreen() {
+    $('.folder').draggable()
+  }
+
+  function handleSmallScreen() {
+    $(".folder").each((_, d) => {
+      $(d).css('top', '')
+      $(d).css('left', '')
     })
-  })
+  }
+
+  function setup() {
+    if($(window).width() < 700){
+      handleSmallScreen()
+    } else {
+      handleLargeScreen()
+    }
+  }
+  addEventListener("resize", setup)
+  setup()
+  $('.folder').click(handleOpenFolder)
 </script>
