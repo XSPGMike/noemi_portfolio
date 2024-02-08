@@ -13,6 +13,7 @@
     <div class="folder" data-url="./about.html">about</div>
     <div class="folder" data-url="./about.html">different</div>
     <div class="folder" data-url="./about.html">something</div>
+    <div class="folder insta-icon">Instagram</div>
   </main>
   </body>
 </html>
@@ -42,6 +43,11 @@
     background-size: 70%;
     background-repeat: no-repeat;
     cursor: pointer;
+  }
+
+  .insta-icon {
+    background-image: url('./instagram_icon.png');
+    background-size: 60%;
   }
 
   .folder:active {
@@ -185,5 +191,7 @@
   }
   addEventListener("resize", setup)
   setup()
+  console.log($('.folder'))
   $('.folder').click(handleOpenFolder)
+  $('.insta-icon').click(() => window.open('https://instagram.com'))
 </script>
