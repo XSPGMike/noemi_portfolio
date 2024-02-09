@@ -1,0 +1,109 @@
+  /* we set the body to be tall as viewport height */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    height: 100vh;
+    margin: 0px;
+  }
+
+  main {
+    height: 100%;
+    background-color: #4298f5;
+  }
+
+  .folder {
+    height: 120px;
+    width: 120px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: white;
+    background-image: url('./folder.png');
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+
+  .icon {
+    background-size: 50%;
+  }
+
+  .insta-icon {
+    background-image: url('./instagram_icon.png');
+  }
+
+  .email-icon {
+    background-size: 60%;
+    background-image: url('./email_icon.png');
+  }
+
+
+  .folder:active {
+    cursor: grabbing;
+  }
+
+  .window {
+    position: absolute;
+    z-index: 999;
+    border-top: none;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .window-topbar {
+    background-color: #ccc;
+    border-radius: 10px 10px 0 0;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    padding-left: 10px;
+  }
+
+  .window-topbar:active {
+    cursor: grabbing;
+  }
+
+  .window-topbar button {
+    background-color: red;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+  }
+
+  .window-topbar button:nth-child(2) {
+    background-color: #00cc00;
+  }
+
+  .window iframe {
+    height: 500px;
+    width: 500px;
+    z-index: 999;
+  }
+
+  @media (max-width:480px)  { 
+    .window {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+    }
+
+    .window iframe {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .buttons, .holder {
+    flex-grow: 1;
+    flex-basis: 0;
+  }

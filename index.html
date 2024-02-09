@@ -2,196 +2,21 @@
 <html>
   <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Noemi something</title>
+  <title>Noemi Marseglia</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="./main.css" rel="stylesheet">
   </head>
   <body>
   <main>
-    <div class="folder" data-url="./about.html">about</div>
-    <div class="folder" data-url="./about.html">different</div>
-    <div class="folder" data-url="./about.html">something</div>
-    <div class="folder insta-icon">Instagram</div>
+    <div class="folder" data-url="./about.html" data-title="about">about</div>
+    <div class="folder" data-url="./about.html" data-title="different">different</div>
+    <div class="folder" data-url="./about.html" data-title="something">something</div>
+    <div class="folder icon insta-icon">Instagram</div>
+    <div class="folder icon email-icon">Email</div>
   </main>
   </body>
+  <script src="./script.js"></script>
 </html>
-<style>
-  /* we set the body to be tall as viewport height */
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    height: 100vh;
-    margin: 0px;
-  }
-
-  main {
-    height: 100%;
-    background-color: #4298f5;
-  }
-
-  .folder {
-    height: 120px;
-    width: 120px;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    color: white;
-    background-image: url('./folder.png');
-    background-position: center;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    cursor: pointer;
-  }
-
-  .insta-icon {
-    background-image: url('./instagram_icon.png');
-    background-size: 60%;
-  }
-
-  .folder:active {
-    cursor: grabbing;
-  }
-
-  .window {
-    position: absolute;
-    z-index: 999;
-    border: 1px solid black;
-    background-color: white;
-  }
-
-  .window-topbar {
-    background-color: gray;
-    height: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-    padding-left: 10px;
-  }
-
-  .window-topbar button {
-    background-color: red;
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    outline: none;
-    border: none;
-  }
-
-  .window iframe {
-    height: 500px;
-    width: 500px;
-    z-index: 999;
-  }
-
-  @media (max-width:480px)  { 
-    .window {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      height: 100%;
-    }
-  }
-
-
-
-</style>
-<script>
-  function createWindow(url, x = 100, y = 100) {
-    const win = $(`
-    <div class="window">
-      <div class="window-topbar">
-        <button>x</button>
-        <button>+</button>
-      </div>
-      <iframe src="${url}"></iframe>
-    </div>
-    `)
-    if($(window).width() > 700) {
-      let top = y - 100 > 0 ? y - 100 : 0
-      let left = x - 100 > 0 ? x - 100 : 0
-      win.css('top', top)
-      win.css('left', left)
-    }
-    $('main').append(win)
-    $('.window').draggable()
-    $('.window').each((_, w) => {
-      $($($(w).children()[0]).children()[0]).click(() => {
-        $(w).hide()
-      })
-      if($(window).height() > 700) {
-        $($($(w).children()[0]).children()[1]).click(() => {
-          if($($(w).children()[1]).css('height') === '500px') {
-          $($($(w).children()[0]).children()[1]).text('-')
-            $(w).css('left', 0)
-            $(w).css('top', 0)
-            $(w).css('width', '100%')
-            $(w).css('height', '100%')
-            $($(w).children()[1]).css('height', '100%');
-            $($(w).children()[1]).css('width', '100%');
-          } else {
-          $($($(w).children()[0]).children()[1]).text('+')
-            $(w).css('left', x - 100)
-            $(w).css('top', y - 100)
-            $(w).css('width', '500px')
-            $(w).css('height', '500px')
-            $($(w).children()[1]).css('height', '500px');
-            $($(w).children()[1]).css('width', '500px');
-          }
-        })
-      }
-    })
-  }
-
-  function handleOpenFolder(e) {
-    const { x, y } = e.target.getBoundingClientRect()
-    const { url } = $(e.target).data()
-    if($(window).width() < 700) {
-      createWindow(url, 0, 0)
-    } else {
-      createWindow(url, x, y)
-    }
-  }
-
-  $(".folder").each((_, d) => {
-    $(d).css('top', Math.floor(Math.random()*(window.innerHeight-400)))
-    $(d).css('left', Math.floor(Math.random()*(window.innerWidth-400)))
-  })
-
-  function handleLargeScreen() {
-    $('.folder').draggable()
-    $(".window").each((_, d) => {
-      $(d).css('height', '500px')
-      $(d).css('width', '500px')
-    })
-  }
-
-  function handleSmallScreen() {
-    $(".folder").each((_, d) => {
-      $(d).css('top', '')
-      $(d).css('left', '')
-    })
-    $(".window").each((_, d) => {
-      $(d).css('top', '0px')
-      $(d).css('left', '0px')
-      $(d).css('height', '100%')
-      $(d).css('width', '100%')
-    })
-  }
-
-  function setup() {
-    if($(window).width() < 700){
-      handleSmallScreen()
-    } else {
-      handleLargeScreen()
-    }
-  }
-  addEventListener("resize", setup)
-  setup()
-  console.log($('.folder'))
-  $('.folder').click(handleOpenFolder)
-  $('.insta-icon').click(() => window.open('https://instagram.com'))
-</script>
