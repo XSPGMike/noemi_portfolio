@@ -20,22 +20,22 @@
     color: white;
     background-image: url('./folder.png');
     background-position: center;
-    background-size: 60%;
+    background-size: 80%;
     background-repeat: no-repeat;
     cursor: pointer;
   }
 
 
   .icon {
-    background-size: 50%;
+    background-size: 75%;
   }
 
   .insta-icon {
+    background-size: 65%;
     background-image: url('./instagram_icon.png');
   }
 
   .email-icon {
-    background-size: 60%;
     background-image: url('./email_icon.png');
   }
 
@@ -50,6 +50,20 @@
     border-top: none;
     background-color: white;
     border-radius: 10px 10px 0 0;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.2s;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   .window-topbar {
