@@ -46,7 +46,7 @@
       })
 
       if($(window).height() > 700) {
-        $(w).find('.buttons').children().eq(1).click(() => {
+        $(w).find('.buttons').children().eq(1).click((e) => {
           if($(w).find('iframe').css('height') === '500px') {
             $(w).css('left', 0)
             $(w).css('top', 0)
@@ -54,6 +54,7 @@
             $(w).css('height', '100%')
             $(w).find('iframe').css('height', '100%');
             $(w).find('iframe').css('width', '100%');
+            $(e.target).text('-')
           } else {
             $(w).css('left', x - 100)
             $(w).css('top', y - 100)
@@ -61,6 +62,7 @@
             $(w).css('height', '500px')
             $(w).find('iframe').css('height', '500px');
             $(w).find('iframe').css('width', '500px');
+            $(e.target).text('+')
           }
         })
       }
