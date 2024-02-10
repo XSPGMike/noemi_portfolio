@@ -168,7 +168,7 @@
   }
 
   .folder-container .folder:nth-child(5) {
-    transform: rotate(20deg);
+    transform: rotate(-10deg);
   }
 
   .lower-icons {
