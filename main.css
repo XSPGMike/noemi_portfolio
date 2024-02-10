@@ -14,15 +14,44 @@
     background-repeat: no-repeat;
   }
 
+  .cv-container {
+    position: fixed;
+    top: 40vh;
+    left: 25%;
+    border: 2px solid red;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .big-cv {
+    display: none;
+    position: absolute;
+    width: 50vh;
+    height: 50vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index:999;
+  }
+
+  .cv-container img {
+    height: 100%;
+    width: 100%;
+  }
+
   .folder-container {
     position: fixed;
-    top: 23%;
+    top: 22%;
     left: 52%;
     height: 50vh;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-height: 50vh
+    max-height: 50vh;
   }
 
   .folder {
@@ -45,7 +74,23 @@
   }
 
   .insta-icon {
-    background-image: url('./assets/instagram_icon.png');
+    background-image: url('./assets/insta_icon.png');
+    background-size: 60%;
+  }
+
+  .mail-icon {
+    background-image: url('./assets/mail_icon.png');
+    background-size: 60%;
+  }
+  .si-icon {
+    background-image: url('./assets/si_icon.png');
+    background-size: 30%;
+    width: 120px;
+    height: 120px;
+  }
+
+  .trash-icon {
+    background-image: url('./assets/trash.webp');
     background-size: 60%;
   }
 
@@ -73,7 +118,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
     padding: 20px;
     padding-left: 10px;
   }
@@ -97,8 +141,8 @@
   }
 
   .window iframe {
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
     z-index: 999;
   }
 
@@ -107,20 +151,39 @@
   }
 
   /* folders starting positions */
-  .folder:nth-child(1) {
+  .folder-container .folder:nth-child(1) {
     transform: rotate(-20deg);
   }
 
-  .folder:nth-child(2) {
+  .folder-container .folder:nth-child(2) {
     transform: rotate(20deg);
   }
 
-  .folder:nth-child(3) {
+  .folder-container .folder:nth-child(3) {
     transform: rotate(20deg);
   }
 
-  .folder:nth-child(4) {
+  .folder-container .folder:nth-child(4) {
     transform: rotate(20deg);
+  }
+
+  .folder-container .folder:nth-child(5) {
+    transform: rotate(20deg);
+  }
+
+  .lower-icons {
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .contacts {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 20px;
   }
 
   @keyframes fadeInOpacity {
@@ -130,9 +193,6 @@
     100% {
       opacity: 1;
     }
-  }
-
-  .cv-container {
   }
 
   @media (max-width:480px)  { 

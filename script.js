@@ -47,7 +47,7 @@
 
       if($(window).height() > 700) {
         $(w).find('.buttons').children().eq(1).click((e) => {
-          if($(w).find('iframe').css('height') === '500px') {
+          if($(w).find('iframe').css('height') === '600px') {
             $(w).css('left', 0)
             $(w).css('top', 0)
             $(w).css('width', '100%')
@@ -69,11 +69,13 @@
     })
   }
 
+  const exclude = ['./map.html', './trash.html']
+
   function handleOpenFolder(e) {
     const { x, y } = e.target.getBoundingClientRect()
     const { url, title } = $(e.target).data()
-    if($(window).width() < 700) {
-      createWindow(url, title, 0, 0)
+    if($(window).width() < 700 || exclude.includes(url)) {
+      createWindow(url, title, 10, 10)
     } else {
       createWindow(url, title, x, y)
     }
@@ -115,3 +117,6 @@
   $('.folder').not('.icon').click(handleOpenFolder)
   $('.insta-icon').click(() => window.open('https://instagram.com'))
   $('.email-icon').click(() => window.open('mailto:example@mail.com'))
+  $('.cv-container').click(() => {
+    createWindow('./cv.html', 'cv')
+  })
