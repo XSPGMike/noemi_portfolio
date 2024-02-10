@@ -79,11 +79,6 @@
     }
   }
 
-  $(".folder").each((_, d) => {
-    $(d).css('top', Math.floor(Math.random()*(window.innerHeight / 2)))
-    $(d).css('left', Math.floor(Math.random()*(window.innerWidth / 2)))
-  })
-
   function handleLargeScreen() {
     $('.folder').draggable()
     $(".window").each((_, d) => {

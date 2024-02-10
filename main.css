@@ -7,38 +7,47 @@
 
   main {
     height: 100%;
-    background-color: #4298f5;
+    background-color: white;
+    background-image: url('./assets/background.png');
+    background-position: center;
+    background-size: 90vh;
+    background-repeat: no-repeat;
+  }
+
+  .folder-container {
+    position: fixed;
+    top: 23%;
+    left: 52%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 50vh
   }
 
   .folder {
     height: 120px;
     width: 120px;
-    font-size: 15px;
+    font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    color: white;
-    background-image: url('./folder.png');
+    color: black;
+    background-image: url('./assets/folder_black.png');
     background-position: center;
     background-size: 80%;
     background-repeat: no-repeat;
     cursor: pointer;
   }
 
-
-  .icon {
-    background-size: 75%;
+  .red {
+    background-image: url('./assets/folder_red.png');
   }
 
   .insta-icon {
-    background-size: 65%;
-    background-image: url('./instagram_icon.png');
+    background-image: url('./assets/instagram_icon.png');
+    background-size: 60%;
   }
-
-  .email-icon {
-    background-image: url('./email_icon.png');
-  }
-
 
   .folder:active {
     cursor: grabbing;
@@ -47,23 +56,14 @@
   .window {
     position: absolute;
     z-index: 999;
-    border-top: none;
-    background-color: white;
+    border: 1px solid #ccc;
     border-radius: 10px 10px 0 0;
+    background-color: white;
     opacity: 1;
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.2s;
-  }
-
-  @keyframes fadeInOpacity {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
   }
 
   .window-topbar {
@@ -102,22 +102,64 @@
     z-index: 999;
   }
 
+  .mobile-folder-container {
+    display: none;
+  }
+
+  /* folders starting positions */
+  .folder:nth-child(1) {
+    transform: rotate(-20deg);
+  }
+
+  .folder:nth-child(2) {
+    transform: rotate(20deg);
+  }
+
+  .folder:nth-child(3) {
+    transform: rotate(20deg);
+  }
+
+  .folder:nth-child(4) {
+    transform: rotate(20deg);
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .cv-container {
+  }
+
   @media (max-width:480px)  { 
+    main {
+      background-image: url('./assets/background_mobile.png');
+      background-size: cover;
+    }
+
+    .mobile-folder-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      max-height: 100vh;
+    }
+
+    .folder-container {
+      display: none;
+    }
+
+    .cv-container {
+      display: none;
+    }
+
     .window {
       position: absolute;
       top: 0px;
       left: 0px;
       height: 100%;
-      width: 100%;
     }
-
-    .window iframe {
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  .buttons, .holder {
-    flex-grow: 1;
-    flex-basis: 0;
   }
