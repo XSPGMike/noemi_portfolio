@@ -201,11 +201,29 @@
       background-size: cover;
     }
 
+    .window iframe {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .folder, .contacts {
+      background-color: white;
+    }
+
+    .lower-icons {
+      justify-content: center;
+      background-color: white;
+    }
+
     .mobile-folder-container {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       max-height: 100vh;
+    }
+
+    .trash-icon {
+      display: none;
     }
 
     .folder-container {
